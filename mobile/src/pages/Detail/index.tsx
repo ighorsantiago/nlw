@@ -28,13 +28,14 @@ interface Data {
 }
 
 const Detail = () => {
-
+  
   const [data, setData] = useState<Data>({} as Data);
-
+  
   const navigation = useNavigation();
   const route = useRoute();
-
+  
   const routeParams = route.params as Params;
+  console.log(routeParams)
 
   useEffect(() => {
     api.get(`points/${routeParams.point_id}`).then(response => {

@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {Feather as Icon} from '@expo/vector-icons'
-import {View, ImageBackground, Image, Text, Picker} from 'react-native';
+import {View, ImageBackground, Image, Text} from 'react-native';
 import {RectButton} from 'react-native-gesture-handler';
 import RNPicker, {Item as PItem} from 'react-native-picker-select';
-import {Dropdown} from 'react-native-material-dropdown';
 import axios from 'axios';
 
 import {useNavigation} from '@react-navigation/native';
@@ -76,7 +75,7 @@ const Home = () => {
               value: '0'
             }}
             value={selectedUf}
-            onValueChange={setSelectedUf}
+            onValueChange={ufPicked => setSelectedUf(ufPicked)}
             items={ufs.map(uf => {
               return {
                 label: uf,
@@ -85,7 +84,7 @@ const Home = () => {
             })}
           />
         </View>
-        
+
         <View>
           <RNPicker
             style={pickerSelectStyles}
@@ -94,7 +93,7 @@ const Home = () => {
               value: '0'
             }}
             value={selectedCity}
-            onValueChange={setSelectedCity}
+            onValueChange={cityPicked => setSelectedCity(cityPicked)}
             items={cities.map(city => {
               return {
                 label: city,

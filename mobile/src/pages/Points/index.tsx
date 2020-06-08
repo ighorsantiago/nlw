@@ -69,7 +69,7 @@ const Points = () => {
     })
   }, []);
 
-
+  // Pontos
   useEffect(() => {
     api.get('points', {
       params: {

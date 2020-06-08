@@ -22,7 +22,7 @@ class PointsController {
       return {
         ...point,
         image_url: `http://192.168.100.79:3333/uploads/${point.image}`,
-      }
+      };
     });
 
     return response.json(serializedPoints);
@@ -38,8 +38,8 @@ class PointsController {
     }
 
     const serializedPoint = {
-        ...point,
-        image_url: `http://192.168.100.79:3333/uploads/${point.image}`,
+      ...point,
+      image_url: `http://192.168.100.79:3333/uploads/${point.image}`,
     };
 
     const items = await knex('items')
@@ -47,7 +47,7 @@ class PointsController {
       .where('point_items.point_id', id)
       .select('items.title');
 
-    return response.json({serializedPoint, items});
+    return response.json({point: serializedPoint, items});
   }
   
   async create(request: Request, response: Response) {
@@ -83,10 +83,10 @@ class PointsController {
       .split(',')
       .map((item: string) => Number(item.trim()))
       .map((item_id: number) => {
-      return {
-        item_id,
-        point_id,
-      };
+        return {
+          item_id,
+          point_id,
+        };
     });
   
     await trx('point_items').insert(pointItems);
